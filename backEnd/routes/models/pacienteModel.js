@@ -9,7 +9,7 @@ const pacienteSchema = schema({
         type: String,
         required: true
       },
-    FechaNacimiento: {
+    fechaNacimiento: {
         type: Date,
         required: true
       },
@@ -18,9 +18,14 @@ const pacienteSchema = schema({
         required: true,
         unique: true
       },
-      teléfono: {
+      telefono: {
         type: String
       },
+      dni:{
+        type:String,
+        required: true,
+        unique: true
+      }
     
 })
 
