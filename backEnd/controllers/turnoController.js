@@ -10,7 +10,8 @@ exports.crearTurno = async (req, res) => {
         const data = await Turno.create({
           paciente,
           fecha,
-          motivo,doctor
+          motivo,
+          doctor
         });
         if (!data) {
           throw new Error("El turno fue creado exitosamente");
@@ -26,7 +27,7 @@ exports.crearTurno = async (req, res) => {
 // Controlador para obtener todos los turnos
 exports.obtenerTodosLosTurnos = async (req, res) => {
   try {
-    const turnos = await Doctor.find();
+    const turnos = await Turno.find();
     res.json(turnos);
   } catch (error) {
     console.error(error);
@@ -68,7 +69,7 @@ exports.actualizarTurno = async (req, res) => {
 // Controlador para eliminar un doctor por su ID
 exports.eliminarTurno = async (req, res) => {
   try {
-    const turno = await Doctor.findByIdAndDelete(req.params.id);
+    const turno = await Turno.findByIdAndDelete(req.params.id);
     if (!turno) {
       return res.status(404).json({ mensaje: 'Turno no encontrado' });
     }
