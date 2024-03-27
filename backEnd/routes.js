@@ -6,6 +6,7 @@ const router = express.Router()
 const pacienteController = require ("./controllers/pacienteController")
 const doctorController = require ("./controllers/doctorController")
 const turnoController = require ("./controllers/turnoController")
+const usuariocontroller = require ("./controllers/usuariocontroller")
 
 
 
@@ -49,6 +50,11 @@ router.put('/turnos/:id', turnoController.actualizarTurno);
 // Ruta para eliminar un turno por su ID
 router.delete('/turnos/:id', turnoController.eliminarTurno);
 
+//rutasTurnos//
+// Ruta para crear un nuevo Usuario registro
+router.post('/registrar', usuariocontroller.crearUsuario);
+// Ruta para crear un nuevo Usuario inicio
+router.post('/iniciar', usuariocontroller.iniciarUsuario);
 
 
 

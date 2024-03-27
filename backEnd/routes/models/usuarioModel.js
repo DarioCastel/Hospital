@@ -10,6 +10,10 @@ const usuarioSchema = schema({
         type: String,
         required: true
       },
+      email: {
+        type: String,
+        required: true
+      },
       doctor: {
         type: mongoose.Schema.Types.ObjectId,
         ref: 'Doctor',
