@@ -2,12 +2,13 @@ import {createBrowserRouter,RouterProvider } from "react-router-dom"
 import Login from "./views/page/Login"
 import Registro from "./views/page/Registro"
 import Error404 from "./views/page/E404"
+import Home from "./views/page/Home"
 
 
 const router = createBrowserRouter([
   {
     path:"/",
-    element: <div>HOME</div>
+    element: <Home/>
   }
   ,
   {
