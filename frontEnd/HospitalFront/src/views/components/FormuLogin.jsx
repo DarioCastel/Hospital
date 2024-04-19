@@ -23,7 +23,8 @@ export default function FormuLogin() {
     const onSubmit = handleSubmit(async(data)=>{
       try {
         const res = await userLogin(data)
-        console.log(res)
+        console.log(res.data.token)
+        localStorage.setItem("userToken", res.data.token)
       } catch (error) {
         setErrorMsj(error.response.data.mensaje)
       }
