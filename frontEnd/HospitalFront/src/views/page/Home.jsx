@@ -4,6 +4,7 @@ import Calendario from "./Calendario"
 import {useLocation} from "react-router-dom"
 import {Navigate, Outlet} from "react-router"
 import { useAppSelector } from "../../hooks/useAppSelector"
+import Login from "./Login"
 
 export default function Example() {
 
@@ -23,7 +24,7 @@ export default function Example() {
         </main>
       </div>
         :
-        <Navigate to="/login"/>
+        <Login/>
       }
     </>
   )
