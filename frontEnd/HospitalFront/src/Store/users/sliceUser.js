@@ -1,12 +1,15 @@
 import {createSlice} from "@reduxjs/toolkit"
 
-const initialState=[]
+const initialState={
+    isAuth: true
+}
+
 
 export const userSlice = createSlice(
     {
         name:"users",
         initialState,
-        reducer:{} 
+        reducers:{} 
     }
 )
 
