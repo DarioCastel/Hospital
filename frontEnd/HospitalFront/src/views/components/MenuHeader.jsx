@@ -18,11 +18,15 @@ const navigation = [
 const userNavigation = [
   { name: 'Your Profile', href: '#' },
   { name: 'Settings', href: '#' },
-  { name: 'Sign out', href: '#' },
+  { name: 'Sign out', href: '#', action: handleLogOut},
 ]
 
 function classNames(...classes) {
   return classes.filter(Boolean).join(' ')
+}
+
+function handleLogOut(){
+  console.log("usuario desconectado")
 }
 const MenuHeader = () => {
   return (
@@ -95,6 +99,9 @@ const MenuHeader = () => {
                                 {({ active }) => (
                                   <a
                                     href={item.href}
+                                    onClick={()=>{
+                                      handleLogOut()
+                                    }}
                                     className={classNames(
                                       active ? 'bg-gray-100' : '',
                                       'block px-4 py-2 text-sm text-gray-700'

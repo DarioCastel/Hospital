@@ -1,5 +1,4 @@
-import { Routes, Route, Navigate, Outlet} from "react-router-dom";
-import Login from "./views/page/Login";
+import { Routes, Route} from "react-router-dom";
 import Registro from "./views/page/Registro";
 import Error404 from "./views/page/E404";
 import Home from "./views/page/Home";

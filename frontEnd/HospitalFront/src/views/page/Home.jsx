@@ -2,7 +2,7 @@ import HeaderPag from "../components/HeaderPag"
 import MenuHeader from "../components/MenuHeader"
 import Calendario from "./Calendario"
 import {useLocation} from "react-router-dom"
-import {Navigate, Outlet} from "react-router"
+import { Outlet} from "react-router"
 import { useAppSelector } from "../../hooks/useAppSelector"
 import Login from "./Login"
 
