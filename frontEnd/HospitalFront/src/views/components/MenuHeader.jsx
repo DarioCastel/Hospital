@@ -2,6 +2,8 @@ import { Fragment } from 'react'
 import { Disclosure, Menu, Transition } from '@headlessui/react'
 import { Bars3Icon, BellIcon, XMarkIcon } from '@heroicons/react/24/outline'
 import { Link } from 'react-router-dom'
+import { useAppDispatch } from '../../hooks/useAppSelector'
+import {logOut} from "../../Store/users/sliceUser"
 
 const user = {
   name: 'Tom Cook',
@@ -15,20 +17,22 @@ const navigation = [
   { name: 'Login', to:"/login", current: false },
   { name: 'Calendario', to:"/calendario", current: false },
 ]
-const userNavigation = [
-  { name: 'Your Profile', href: '#' },
-  { name: 'Settings', href: '#' },
-  { name: 'Sign out', href: '#', action: handleLogOut},
-]
 
 function classNames(...classes) {
   return classes.filter(Boolean).join(' ')
 }
 
-function handleLogOut(){
-  console.log("usuario desconectado")
-}
 const MenuHeader = () => {
+  const userNavigation = [
+    { name: 'Your Profile', href: '#' },
+    { name: 'Settings', href: '#' },
+    { name: 'Sign out', href: '#', action: handleLogOut},
+  ]
+  
+  const dispatch = useAppDispatch();
+  function handleLogOut() {
+    dispatch(logOut()); 
+  }
   return (
     <>
     <Disclosure as="nav" className="bg-gray-800">
@@ -99,9 +103,7 @@ const MenuHeader = () => {
                                 {({ active }) => (
                                   <a
                                     href={item.href}
-                                    onClick={()=>{
-                                      handleLogOut()
-                                    }}
+                                    onClick={item.action}
                                     className={classNames(
                                       active ? 'bg-gray-100' : '',
                                       'block px-4 py-2 text-sm text-gray-700'

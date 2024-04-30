@@ -4,6 +4,8 @@ import { useForm } from "react-hook-form";
 import { userLogin } from "../../api/Auth";
 import Alert from "./Alert";
 import { setCookies, getCookies, removeCookies } from "../../hooks/useCookies";
+import { useAppDispatch } from "../../hooks/useAppSelector";
+import { login } from "../../Store/users/sliceUser";
 
 export default function FormuLogin() {
   const [errorMsj, setErrorMsj] = useState("");
@@ -16,13 +18,13 @@ export default function FormuLogin() {
     return () => clearTimeout(setTime);
   }, [errorMsj]);
 
+  const dispatch = useAppDispatch()
+
   const onSubmit = handleSubmit(async (data) => {
     try {
       const res = await userLogin(data);
       setCookies("token", res,data.token)
-      const tokenGuard = getCookies("token")
-      console.log(tokenGuard)
-      localStorage.setItem("userToken", res.data.token);
+      dispatch(login())
     } catch (error) {
       setErrorMsj(error.response.data.mensaje);
     }
@@ -37,7 +39,7 @@ export default function FormuLogin() {
           </h3>
           <form className="mt-6" onSubmit={handleSubmit(onSubmit)}>
             <label
-              htmlFor="email"
+              
               className="text-tremor-default font-medium text-tremor-content-strong dark:text-dark-tremor-content-strong"
             >
               Email
@@ -50,7 +52,7 @@ export default function FormuLogin() {
               {...register("email", { required: true })}
             />
             <label
-              htmlFor="Password"
+              
               className="text-tremor-default font-medium text-tremor-content-strong dark:text-dark-tremor-content-strong"
             >
               Constraseña

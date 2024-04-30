@@ -5,7 +5,7 @@ export const setCookies=(name, data)=>{
 }
 
 export const getCookies=(name)=>{
-    Cookies.get(name, {expires:1})
+   return Cookies.get(name, {expires:1})
 }
 
 export const removeCookies= (name)=>{
