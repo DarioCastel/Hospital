@@ -8,7 +8,7 @@ import Login from "./Login"
 
 export default function Example() {
 
-  const isAuth = useAppSelector(state=> state.users.isAuth) 
+  const isAuth = useAppSelector(state=> state.auth.isAuth) 
 
   const location=useLocation()
   return (

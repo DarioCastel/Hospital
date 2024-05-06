@@ -1,8 +1,9 @@
 import { configureStore } from "@reduxjs/toolkit";
-import userReducer from "./users/sliceUser.js";
+import rootReducer from "./rootReducer.js";
+import { persistStore } from "redux-persist";
 
 export const store = configureStore({
-  reducer: {
-    users: userReducer,
-  },
+  reducer: rootReducer,
 });
+
+export const persistor = persistStore(store)
