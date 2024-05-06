@@ -14,7 +14,7 @@ const user = {
 const navigation = [
   { name: 'Home', to:"/", current: true },
   { name: 'Registro', to:"/registro", current: false },
-  { name: 'Login', to:"/login", current: false },
+  { name: 'Turno', to:"/turno", current: false },
   { name: 'Calendario', to:"/calendario", current: false },
 ]
 

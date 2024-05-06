@@ -3,6 +3,7 @@ import Registro from "./views/page/Registro";
 import Error404 from "./views/page/E404";
 import Home from "./views/page/Home";
 import Calendario from "./views/page/Calendario";
+import Turnos from "./views/page/Turnos";
 
 
 const App = () => {
@@ -13,6 +14,7 @@ const App = () => {
         <Route path="/" element={<Home />}>
           <Route path="/registro" element={<Registro />} />
           <Route path="/calendario" element={<Calendario />} />
+          <Route path="/turno" element={<Turnos/> } />
           <Route path="/*" element={<Error404 />} />
         </Route>
       </Routes>
