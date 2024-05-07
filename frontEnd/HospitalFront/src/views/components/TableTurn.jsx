@@ -1,5 +1,6 @@
 import { RiArrowDownLine, RiArrowUpLine } from "@remixicon/react";
 import { CiEdit, CiTrash, CiRead } from "react-icons/ci";
+import { useAppDispatch, useAppSelector } from "../../hooks/useAppSelector";
 
 import {
   flexRender,
@@ -15,6 +16,10 @@ import {
   TableHeaderCell,
   TableRow,
 } from "@tremor/react";
+import { cargarTurnos } from "../../Store/turnos/turnoSlice";
+import { useEffect, useState } from "react";
+import { DoctorID } from "../../api/doctor";
+import { PacienteId } from "../../api/paciente";
 
 // This example requires @tanstack/react-table
 
@@ -22,14 +27,6 @@ function classNames(...classes) {
   return classes.filter(Boolean).join(" ");
 }
 
-const workspaces = [
-  {
-    fecha:"123",
-    paciente:"juan perezzz",
-    motivo:"operación",
-    doctor:"Akira Kagazawa"
-  },
-];
 
 const workspacesColumns = [
   {
@@ -74,9 +71,46 @@ const workspacesColumns = [
   },
 ];
 
+
+
 export default function TableTurn() {
+  
+
+  const dataTurnos = useAppSelector((state)=>
+    state.turno.turnoData
+  )
+  console.log(dataTurnos)
+  const [turnosNombres, setTurnosNombres] = useState([])
+
+  const dispatch= useAppDispatch()
+  useEffect(() => {
+    dispatch(cargarTurnos())
+  }, [dispatch])
+  
+  const cargarNombres= async ()=>{
+    const turnosNombresActualizados = await Promise.all(
+      dataTurnos.map(async (turno)=>{
+        const doctorResponse = await DoctorID(turno.doctor);
+        const pacienteResponse = await PacienteId(turno.paciente);
+
+        const nombreDoctor = doctorResponse.data.nombre;
+        const nombrePaciente = pacienteResponse.data.nombre;
+        const fechaFormat= new Date(turno.fecha).toLocaleString();
+
+        return{
+          ...turno,
+          fecha: fechaFormat,
+          doctor: nombreDoctor,
+          paciente: nombrePaciente
+
+        }
+      })
+    )
+    setTurnosNombres(turnosNombresActualizados)
+  }
+
   const table = useReactTable({
-    data: workspaces,
+    data: turnosNombres,
     columns: workspacesColumns,
     getCoreRowModel: getCoreRowModel(),
     getSortedRowModel: getSortedRowModel(),
@@ -90,6 +124,10 @@ export default function TableTurn() {
     },
   });
 
+  useEffect(() => {
+    cargarNombres()
+  }, [dataTurnos])
+  
   return (
     <>
       <Table>
