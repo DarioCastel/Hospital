@@ -3,11 +3,13 @@ import { Divider, TextInput } from '@tremor/react';
 
 export default function TurnoForm({onCancel}) {
   
+  const today = new Date().toISOString().split("T")[0];
+
   return (
     <>
       <div className="sm:mx-auto sm:max-w-2xl">
         <h3 className="text-tremor-title font-semibold text-tremor-content-strong dark:text-dark-tremor-content-strong">
-          Register to workspace
+          Registro de paciente
         </h3>
         <p className="mt-1 text-tremor-default leading-6 text-tremor-content dark:text-dark-tremor-content">
         </p>
@@ -18,17 +20,18 @@ export default function TurnoForm({onCancel}) {
                 htmlFor="first-name"
                 className="text-tremor-default font-medium text-tremor-content-strong dark:text-dark-tremor-content-strong"
               >
-                First name
+                Fecha
                 <span className="text-red-500">*</span>
               </label>
               <TextInput
-                type="text"
+                type="date"
                 id="first-name"
                 name="first-name"
                 autoComplete="first-name"
                 placeholder="First name"
                 className="mt-2"
                 required
+                min={today}
               />
             </div>
             <div className="col-span-full sm:col-span-3">
@@ -36,100 +39,77 @@ export default function TurnoForm({onCancel}) {
                 htmlFor="last-name"
                 className="text-tremor-default font-medium text-tremor-content-strong dark:text-dark-tremor-content-strong"
               >
-                Last name
+                Hora
                 <span className="text-red-500">*</span>
               </label>
-              <TextInput
-                type="text"
-                id="last-name"
-                name="last-name"
+              <br />
+              <input
+                type="time"
+                id="hora"
+                name="hora"
                 autoComplete="last-name"
                 placeholder="Last name"
-                className="mt-2"
+                className="mt-2 hora"
                 required
+                min="08:00"
+                max="21:00"
               />
             </div>
-            <div className="col-span-full">
+            <div className="col-span-full sm:col-span-3">
               <label
                 htmlFor="email"
                 className="text-tremor-default font-medium text-tremor-content-strong dark:text-dark-tremor-content-strong"
               >
-                Email
+                Paciente ingrese DNI
                 <span className="text-red-500">*</span>
               </label>
               <TextInput
-                type="email"
-                id="email"
-                name="email"
-                autoComplete="email"
-                placeholder="Email"
+                type="string"
+                id="paciente"
+                name="paciente"
+                autoComplete=""
+                placeholder="DNI"
                 className="mt-2"
                 required
               />
+            </div>
+            <div className="col-span-full sm:col-span-3">
+              <label
+                htmlFor="address"
+                className="text-tremor-default font-medium text-tremor-content-strong dark:text-dark-tremor-content-strong"
+              >
+                Doctor
+              </label>
+              <br />
+              <select
+                id="doctor"
+                name="doctor"
+                className="mt-2 hora"
+              >
+                <option value="">Seleccione Doctor</option>
+                <option value="doc1">Doc1</option>
+                <option value="doc2">Doc2</option>
+              </select>
             </div>
             <div className="col-span-full">
               <label
                 htmlFor="address"
                 className="text-tremor-default font-medium text-tremor-content-strong dark:text-dark-tremor-content-strong"
               >
-                Address
+               Motivo
               </label>
-              <TextInput
-                type="text"
-                id="address"
-                name="address"
-                autoComplete="street-address"
-                placeholder="Address"
-                className="mt-2"
-              />
+              <textarea
+                placeholder="Describa el motivo de la visita"
+                className="tremor-Textarea-Textarea w-full flex items-center outline-none rounded-tremor-default px-3 py-2 text-tremor-default focus:ring-2 transition duration-100 border shadow-tremor-input focus:border-tremor-brand-subtle focus:ring-tremor-brand-muted dark:shadow-dark-tremor-input focus:dark:border-dark-tremor-brand-subtle focus:dark:ring-dark-tremor-brand-muted bg-tremor-background dark:bg-dark-tremor-background hover:bg-tremor-background-muted dark:hover:bg-dark-tremor-background-muted text-tremor-content dark:text-dark-tremor-content border-tremor-border dark:border-dark-tremor-border placeholder:text-tremor-content dark:placeholder:text-dark-tremor-content wrstk"
+                data-testid="text-area"
+                id="motivo-description"
+                name="motivo-description"
+                rows="4"
+              ></textarea>
             </div>
-            <div className="col-span-full sm:col-span-2">
-              <label
-                htmlFor="city"
-                className="text-tremor-default font-medium text-tremor-content-strong dark:text-dark-tremor-content-strong"
-              >
-                City
-              </label>
-              <TextInput
-                type="text"
-                id="city"
-                name="city"
-                autoComplete="address-level2"
-                placeholder="City"
-                className="mt-2"
-              />
-            </div>
-            <div className="col-span-full sm:col-span-2">
-              <label
-                htmlFor="state"
-                className="text-tremor-default font-medium text-tremor-content-strong dark:text-dark-tremor-content-strong"
-              >
-                State
-              </label>
-              <TextInput
-                type="text"
-                id="state"
-                name="state"
-                autoComplete="address-level1"
-                placeholder="State"
-                className="mt-2"
-              />
-            </div>
-            <div className="col-span-full sm:col-span-2">
-              <label
-                htmlFor="postal-code"
-                className="text-tremor-default font-medium text-tremor-content-strong dark:text-dark-tremor-content-strong"
-              >
-                Postal code
-              </label>
-              <TextInput
-                id="postal-code"
-                name="postal-code"
-                autoComplete="postal-code"
-                placeholder="Postal code"
-                className="mt-2"
-              />
-            </div>
+            
+            
+            
           </div>
           <Divider />
           <div className="flex items-center justify-end space-x-4">
@@ -148,6 +128,8 @@ export default function TurnoForm({onCancel}) {
             </button>
           </div>
         </form>
+        <br />
+        <hr />
       </div>
     </>
   );

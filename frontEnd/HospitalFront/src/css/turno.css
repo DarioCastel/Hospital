@@ -1,6 +1,4 @@
 .containerTurnos{
-    display: flex;
-    flex-direction: column;
     padding: 0 2rem;
     gap: 2rem;
 }
@@ -27,4 +25,9 @@
     color: white;
     border-radius: 5px;
     width: 10rem;
+}
+
+.hora{
+    border: 1px solid #e8e8e8;
+    padding: .5rem 1rem;
 }
